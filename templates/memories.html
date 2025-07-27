@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>pictures 📸</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <!-- Floating Hearts -->
+    <div class="floating-hearts">
+        <span style="--i:1">💞</span>
+        <span style="--i:2">💝</span>
+        <span style="--i:3">❤️</span>
+        <span style="--i:4">💖</span>
+        <span style="--i:5">💘</span>
+    </div>
+
+    <div class="container">
+
+        <!-- Section 1: Moments -->
+        <div class="section-box">
+            <h1 class="float-text">Moments ✨</h1>
+            <div class="gallery">
+                <img src="/static/img1.jpg" alt="pic1" class="memory-photo glow">
+                <img src="/static/img2.jpg" alt="pic2" class="memory-photo glow">
+            </div>
+        </div>
+
+        <!-- Section 2: Flirty Whisper -->
+        <div class="section-box">
+            <h1 class="float-text"> Whisper 💕</h1>
+            <div class="flirt-box">
+                <button onclick="generateFlirtyLine()">Click me</button>
+                <div id="flirtLine">Waiting to charm her... 😍</div>
+            </div>
+        </div>
+
+        <a href="/" class="nav-button">⬅️ Back to Home</a>
+    </div>
+
+    <script>
+        const flirtingLines = [
+            "Are you a camera? Because every time I look at you, I smile.",
+            "Do you have a map? I just got lost in your eyes.",
+            "Are you Wi-Fi? Because I’m feeling a strong connection.",
+            "You must be magic—how else did you appear in my dreams and now in front of me?",
+            "If beauty were a crime, you’d be serving a life sentence.",
+            "You're the reason I check my phone with a smile.",
+            "Are you made of stardust? Because you light up my universe.",
+            "If I were a cat, I’d spend all 9 lives with you.",
+            "Do you have a Band-Aid? Because I just scraped my knee falling for you.",
+            "Is your name Google? Because you have everything I’ve been searching for.",
+            "Do you believe in fate? Because I think we were meant to flirt.",
+            "Are you a magician? Because whenever I look at you, everyone else disappears.",
+            "I must be a snowflake, because I’ve fallen for you.",
+            "Are you Netflix? Because I could watch you for hours.",
+            "Is your name Chapstick? Because you’re da balm.",
+            "You must be a keyboard, because you’re just my type.",
+            "Are you the ocean? Because I’m lost in your waves.",
+            "You must be tired—because you’ve been running through my dreams all night.",
+            "Is your name sunshine? Because you brighten my darkest days.",
+            "If I had a star for every time you made me smile, I’d have a galaxy.",
+            "Are you chocolate? Because you’re sweet and addictive.",
+            "Do you work at Starbucks? Because I like you a latte.",
+            "Can I follow you home? Because my heart just left with you.",
+            "Is your name Wi-Fi? Because I’m feeling a strong connection.",
+            "You must be a song, because you’re stuck in my head.",
+            "Are you gravity? Because you make it hard to stay away.",
+            "Do you like science? Because I’ve got chemistry with you.",
+            "Are you an angel? Because heaven is missing one.",
+            "If you were a vegetable, you’d be a cute-cumber.",
+            "Are you my phone charger? Because without you, I’d die.",
+            "Is your name Instagram? Because I’m double-tapping every moment with you.",
+            "You must be a spark, because you light up every room.",
+            "Are you the moon? Because even in darkness, you shine.",
+            "Are we in a library? Because I’m checking you out.",
+            "Is your dad a boxer? Because you’re a knockout!",
+            "Are you time? Because I want to spend every second with you.",
+            "If I were a planet, you’d be my moon.",
+            "Are you an artist? Because every time I look at you, I see a masterpiece.",
+            "Are you a light bulb? Because you brighten up my world.",
+            "Are you a campfire? Because you’re hot and I want s’more.",
+            "Are you thunder? Because my heart races when I hear you.",
+            "You must be a fire alarm, because you’re smoking hot.",
+            "Is your name winter? Because you’re snow special.",
+            "Are you a sunrise? Because you make every morning beautiful.",
+            "If kisses were snowflakes, I’d send you a blizzard.",
+            "Are you an eclipse? Because you’ve blocked out everyone else.",
+            "You must be a poem—every word about you feels like magic.",
+            "Are you ice cream? Because I melt around you.",
+            "Do you like puzzles? Because you’re the missing piece to my heart.",
+            "Are you a planet? Because I orbit around your smile.",
+            "Is your name caffeine? Because you’ve got my heart racing.",
+            "Are you a flame? Because you ignite something in me.",
+            "Are you a dream? Because I don’t want to wake up.",
+            "Do you have a mirror in your pocket? Because I can see myself in your eyes.",
+            "Are you a fairy tale? Because my heart believes in you.",
+            "You must be a charger, because my world lights up when you're near.",
+            "Are you a rainbow? Because you color my world.",
+            "Are you a password? Because I can’t get you out of my system.",
+            "If beauty were time, you’d be eternity.",
+            "Are you rain? Because I’ve been waiting for someone like you.",
+            "You must be a breeze, because you take my breath away.",
+            "Are you a volcano? Because my heart erupts for you.",
+            "Are you a treasure map? Because I’ve been searching for you all my life.",
+            "You’re the kind of person songs are written about.",
+            "Are you a pillow? Because I could cuddle you forever.",
+            "You must be a wish, because everything about you is magic.",
+            "Do you like space? Because your smile is out of this world.",
+            "Are you a mirror? Because I see my happiness in you.",
+            "Are you a cloud? Because you lift me up.",
+            "Is your name Joy? Because that’s what you bring me.",
+            "Are you an adventure? Because I want to explore every part of you.",
+            "Are you a melody? Because I could replay you all day.",
+            "Are you a compass? Because you point me in the right direction.",
+            "You must be a clock, because I want to spend every minute with you.",
+            "Are you a genie? Because you’ve made all my wishes come true.",
+            "You’re not just a snack—you’re the whole meal.",
+            "Are you Bluetooth? Because I’m feeling the sync.",
+            "Are you sunrise or sunset? Because you make every moment golden.",
+            "Are you a candle? Because you light up the darkness.",
+            "Are you my playlist? Because I want you on repeat.",
+            "You must be a whisper, because you speak directly to my heart.",
+            "Are you a tide? Because I’m swept away by you.",
+            "Are you a shooting star? Because you made my wish come true.",
+            "Is your smile Wi-Fi enabled? Because it connects straight to my heart.",
+            "Are you a compass? Because I’m lost without you.",
+            "You’re like my favorite book—I never want to close you.",
+            "Are you a painting? Because I want to hang out with you.",
+            "Are you lightning? Because you struck my heart.",
+            "Are you the wind? Because you move me.",
+            "Do you have a name, or can I call you mine?",
+            "Are you the sun? Because my world revolves around you.",
+            "Are you an emoji? Because words aren't enough to describe you.",
+            "Are you a key? Because you’ve unlocked my heart.",
+            "Are you a button? Because every time you’re near, I feel pressed to impress.",
+            "Are you a hug in human form? Because that’s what I feel around you.",
+            "You’re not just attractive—you’re absolutely magnetic.",
+            "Are you cotton candy? Because you’re sweet, soft, and addictive.",
+            "You’re like Wi-Fi: invisible but essential to my happiness.",
+            "Are you stardust? Because you shine in ways words can’t describe.",
+            "Are you a flame? Because I burn for you.",
+            "Are you made of sugar? Because you’ve sweetened my life.",
+            "You’re the “yes” to all my “maybes.”",
+            "Are you an equation? Because you solve all my problems.",
+            "Are you a sunrise alarm? Because I want to wake up with you every day.",
+            "Are you an app? Because I can't stop clicking on you.",
+            "You’re the Wi-Fi to my soul—always keeping me connected.",
+            "Are you a dream catcher? Because you make my nightmares disappear."
+        ];
+
+        function generateFlirtyLine() {
+            const line = flirtingLines[Math.floor(Math.random() * flirtingLines.length)];
+            document.getElementById("flirtLine").innerText = line;
+        }
+    </script>
+
+</body>
+</html>
